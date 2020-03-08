@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: articles
@@ -12,18 +14,17 @@
 #
 
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: %i[show edit update destroy]
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.paginate(:page => params[:page], :per_page => params[:per_page] ||= 30).order(created_at: :desc)
+    @articles = Article.paginate(page: params[:page], per_page: params[:per_page] ||= 30).order(created_at: :desc)
   end
 
   # GET /articles/1
   # GET /articles/1.json
-  def show
-  end
+  def show; end
 
   # GET /articles/new
   def new
@@ -31,8 +32,7 @@ class ArticlesController < ApplicationController
   end
 
   # GET /articles/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /articles
   # POST /articles.json
@@ -75,20 +75,21 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "The article you're looking for cannot be found"
-      respond_to do |format|
-        format.html {redirect_to articles_path}
-        format.json {render json: nil, status: 404}
-      end
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:title, :content, :category, :user_id)
-      # Students, make sure to add the user_id parameter as a symbol here ^^^^^^
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The article you're looking for cannot be found"
+    respond_to do |format|
+      format.html { redirect_to articles_path }
+      format.json { render json: nil, status: 404 }
     end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def article_params
+    params.require(:article).permit(:title, :content, :category, :user_id)
+    # Students, make sure to add the user_id parameter as a symbol here ^^^^^^
+  end
 end

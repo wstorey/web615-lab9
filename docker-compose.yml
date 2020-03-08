@@ -11,6 +11,24 @@ services:
     logging:
       driver: none
   # These are the components of the app
+  guard:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1001}
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - "35729:35729"
+    depends_on:
+      - app
+      - redis
+    environment:
+      - RAILS_ENV=test
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=
+    command: bundle exec guard --no-bundler-warning --no-interactions
   app:
     build:
       context: .

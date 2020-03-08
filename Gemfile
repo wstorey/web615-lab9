@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -9,11 +11,11 @@ end
 gem 'newrelic_rpm'
 gem 'rack-tracker'
 
-gem 'devise' # https://github.com/plataformatec/devise#getting-started
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'bootstrap-sass'
-gem 'jquery-rails'
 gem 'bootstrap_form', '~> 2.7'
+gem 'devise' # https://github.com/plataformatec/devise#getting-started
+gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
+gem 'jquery-rails'
 gem 'will_paginate'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -35,17 +37,18 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'pg', '~> 0.21'
 gem 'rswag'
+gem 'rubocop', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
   # Testing System
-  gem 'rspec-rails', '~> 3.7'
-  gem 'factory_bot_rails'
   gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
+  gem 'factory_bot_rails'
   gem 'launchy'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'selenium-webdriver'
 end
 
 group :test do
@@ -55,20 +58,20 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'annotate'
   gem 'rails-erd'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem "better_errors" # Displays better errors
-  gem "binding_of_caller"
+  gem 'better_errors' # Displays better errors
+  gem 'binding_of_caller'
 
   gem 'guard' # Watches for files to change
-  gem 'guard-rails', require: false # Rails bindings
   gem 'guard-livereload', '~> 2.5', require: false # Sends reload command if a file changes
+  gem 'guard-rails', require: false # Rails bindings
   gem 'guard-rspec', require: false # Adds rspec bindings
   gem 'leifcr-rack-livereload', require: 'rack-livereload' # adds live reload to the site
 end
@@ -78,4 +81,4 @@ group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
