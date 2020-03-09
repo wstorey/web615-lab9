@@ -18,8 +18,6 @@ services:
         UID: ${UID:-1001}
     volumes:
       - ./:/usr/src/app
-    ports:
-      - "35729:35729"
     depends_on:
       - app
       - redis

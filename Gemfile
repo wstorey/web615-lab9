@@ -36,8 +36,8 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'pg', '~> 0.21'
-gem 'rswag'
 gem 'rubocop', require: false
+gem 'rubocop-faker', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -70,10 +70,8 @@ group :development do
   gem 'binding_of_caller'
 
   gem 'guard' # Watches for files to change
-  gem 'guard-livereload', '~> 2.5', require: false # Sends reload command if a file changes
   gem 'guard-rails', require: false # Rails bindings
   gem 'guard-rspec', require: false # Adds rspec bindings
-  gem 'leifcr-rack-livereload', require: 'rack-livereload' # adds live reload to the site
 end
 
 group :production do
