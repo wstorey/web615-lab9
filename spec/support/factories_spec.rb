@@ -1,3 +1,5 @@
+# :nocov:
+
 # frozen_string_literal: true
 
 # SRC: https://github.com/thoughtbot/factory_bot/wiki/testing-all-factories-(with-rspec)
@@ -33,3 +35,5 @@ RSpec.describe 'Factory Bot' do
     end
   end
 end
+
+# :nocov:
