@@ -18,11 +18,11 @@ class Article < ApplicationRecord
 
   friendly_id :uuid, use: [:slugged, :finders]
 
-  devise :databse_authenticatable, :rememberable, :trackable, :validatable
+  # devise :databse_authenticatable, :rememberable, :trackable, :validatable
 
   before_create :generate_uuid
   after_create :manually_update_slug
-  
+
   has_many :comments
   belongs_to :user
 
