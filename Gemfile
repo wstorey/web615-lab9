@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'pg', '~> 0.21'
 gem 'rubocop', require: false
 gem 'rubocop-faker', require: false
+gem 'friendly_id', '~> 5.2.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
