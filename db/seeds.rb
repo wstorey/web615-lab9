@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'securerandom'
 
 def create_seed_user
   email = Faker::Internet.safe_email
@@ -22,6 +23,9 @@ User.all.destroy_all
   paragraph_3 = Faker::Hipster.paragraphs.join(' ')
   @article.content = "#{paragraph_1} <br /> #{paragraph_2} <br /> #{paragraph_3}"
   @article.user = create_seed_user
+  uuid = SecureRandom.uuid
+  @article.uuid = uuid
+  @article.slug = uuid
   if @article.save
     p "#{@article.title} has been saved"
     (1..10).each do |ii|
@@ -29,6 +33,8 @@ User.all.destroy_all
       @comment.article = @article
       @comment.message = Faker::Hacker.say_something_smart
       @comment.user = create_seed_user
+      @comment.uuid = uuid
+      @comment.slug = uuid
       if @comment.save
         p "Comment #{ii} has been saved for article #{@article.title}"
       else
