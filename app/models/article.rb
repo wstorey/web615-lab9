@@ -14,9 +14,28 @@
 #
 
 class Article < ApplicationRecord
+  extend FriendlyId
+
+  friendly_id :uuid, use: [:slugged, :finders]
+
+  devise :databse_authenticatable, :rememberable, :trackable, :validatable
+
+  before_create :generate_uuid
+  after_create :manually_update_slug
+  
   has_many :comments
   belongs_to :user
 
   validates :title, presence: true
   validates :content, presence: true
+
+  private
+
+  def generate_uuid
+    self.uuid = "#{self.model_name.name}-" + SecureRandom.uuid
+  end
+
+  def manually_update_slug
+    self.update_column(:slug, self.uuid)
+  end
 end
