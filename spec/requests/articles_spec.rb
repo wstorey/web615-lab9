@@ -29,7 +29,9 @@ RSpec.describe 'Articles', type: :request do
   describe 'GET #index' do
     describe 'valid: ' do
       it 'should return a list of articles' do
-        @article = FactoryBot.create(:article)
+        friendlyArticle = FactoryBot.create(:article)
+        @article = Article.friendly.find(friendlyArticle.id)
+        
         click_link 'Articles'
         expect(current_path).to eq(articles_path)
 
@@ -46,7 +48,9 @@ RSpec.describe 'Articles', type: :request do
   describe 'GET #show' do
     describe 'valid: ' do
       it 'should return an article' do
-        @article = FactoryBot.create(:article)
+        friendlyArticle = FactoryBot.create(:article)
+        @article = Article.friendly.find(friendlyArticle.id)
+
         click_link 'Articles'
         expect(current_path).to eq(articles_path)
 
@@ -114,7 +118,9 @@ RSpec.describe 'Articles', type: :request do
   describe 'GET #edit' do
     describe 'valid: ' do
       it 'should update an article with valid attributes' do
-        @article = FactoryBot.create(:article)
+        friendlyArticle = FactoryBot.create(:article)
+        @article = Article.friendly.find(friendlyArticle.id)
+
         click_link 'Articles'
         expect(current_path).to eq(articles_path)
 
@@ -148,7 +154,9 @@ RSpec.describe 'Articles', type: :request do
 
     describe 'invalid: ' do
       it 'should not update an article with invalid attributes' do
-        @article = FactoryBot.create(:article)
+        friendlyArticle = FactoryBot.create(:article)
+        @article = Article.friendly.find(friendlyArticle.id)
+
         click_link 'Articles'
         expect(current_path).to eq(articles_path)
 
@@ -178,7 +186,9 @@ RSpec.describe 'Articles', type: :request do
   describe 'DELETE #destroy' do
     describe 'valid: ' do
       it 'should destroy an article when destroy is clicked' do
-        @article = FactoryBot.create(:article)
+        friendlyArticle = FactoryBot.create(:article)
+        @article = Article.friendly.find(friendlyArticle.id)
+
         click_link 'Articles'
         expect(current_path).to eq(articles_path)
 

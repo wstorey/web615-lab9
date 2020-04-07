@@ -31,7 +31,9 @@ RSpec.describe 'Comments', type: :request do
   describe 'GET #index' do
     describe 'valid: ' do
       it 'should return a list of comments' do
-        @comment = FactoryBot.create(:comment)
+        friendlyComment = FactoryBot.create(:comment)
+        @comment = Comment.friendly.find(friendlyComment.id)
+
         click_link 'Comments'
         expect(current_path).to eq(comments_path)
 
@@ -48,7 +50,9 @@ RSpec.describe 'Comments', type: :request do
   describe 'GET #show' do
     describe 'valid: ' do
       it 'should return a comment' do
-        @comment = FactoryBot.create(:comment)
+        friendlyComment = FactoryBot.create(:comment)
+        @comment = Comment.friendly.find(friendlyComment.id)
+
         click_link 'Comments'
         expect(current_path).to eq(comments_path)
 
@@ -119,7 +123,9 @@ RSpec.describe 'Comments', type: :request do
   describe 'GET #edit' do
     describe 'valid: ' do
       it 'should update a comment with valid attributes' do
-        @comment = FactoryBot.create(:comment)
+        friendlyComment = FactoryBot.create(:comment)
+        @comment = Comment.friendly.find(friendlyComment.id)
+
         click_link 'Comments'
         expect(current_path).to eq(comments_path)
 
@@ -150,7 +156,9 @@ RSpec.describe 'Comments', type: :request do
 
     describe 'invalid: ' do
       it 'should not update an comment with invalid attributes' do
-        @comment = FactoryBot.create(:comment)
+        friendlyComment = FactoryBot.create(:comment)
+        @comment = Comment.friendly.find(friendlyComment.id)
+
         click_link 'Comments'
         expect(current_path).to eq(comments_path)
 
@@ -179,7 +187,9 @@ RSpec.describe 'Comments', type: :request do
   describe 'DELETE #destroy' do
     describe 'valid: ' do
       it 'should destroy a comment when destroy is clicked' do
-        @comment = FactoryBot.create(:comment)
+        friendlyComment = FactoryBot.create(:comment)
+        @comment = Comment.friendly.find(friendlyComment.id)
+
         click_link 'Comments'
         expect(current_path).to eq(comments_path)
 
